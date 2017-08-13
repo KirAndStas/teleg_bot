@@ -35,4 +35,6 @@ app.on('photo', downloadPhotoMiddleware, (ctx, next) => {
     return ctx.replyWithPhoto({ source: './result/test.png' });
 })
 
+
+
 module.exports = app;
