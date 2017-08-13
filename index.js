@@ -56,7 +56,13 @@ app.on('photo', downloadPhotoMiddleware, (ctx, next) => {
             });
         }
         exec('rm' + '/home/mykhalychnickolay/teleg_bot/original/*', function (err, stdout, stderr) {
-            console.log('Clear original');
+            console.log('Clear ori');
+        });
+
+
+        fs.unlink('/home/mykhalychnickolay/teleg_bot/original', (err) => {
+            if (err) throw err;
+            console.log('successfully deleted /home/mykhalychnickolay/teleg_bot/original');
         });
 
     } catch (e) {
