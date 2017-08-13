@@ -39,14 +39,19 @@ app.command('help', ({ from, reply }) => {
 app.on('photo', downloadPhotoMiddleware, (ctx, next) => {
     downloadImages(ctx.state.fileLink);
 
-   try {
-       PythonShell.run('../Odessa_Hack/__init__.py', function (err) {
-           if (err) throw err;
-           console.log('finished');
-       });
-   } catch (e) {
-       console.log('2222222', e);
-   }
+    try {
+        var options = {
+            pythonPath: '/usr/bin/python3.5',
+            scriptPath: '../Odessa_Hack'
+        };
+
+        PythonShell.run('__init__.py', function (err) {
+            if (err) throw err;
+            console.log('finished');
+        });
+    } catch (e) {
+        console.log('2222222', e);
+    }
 
     return ctx.replyWithPhoto({ source: './result/mask.png' });
 })
