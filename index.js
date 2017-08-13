@@ -23,13 +23,13 @@ app.command('help', ({ from, reply }) => {
 app.on('photo', downloadPhotoMiddleware, (ctx, next) => {
     const format = ctx.state.fileLink.slice(-3);
     fs.writeFile(`./original/test.${format}`, ctx.state.fileLink, (err) => {
-        if (err) console.log(err);
+        if (err) console.log('1111', err);
     })
 
     try {
-        const process = spawn('python', ["../Odessa_Hack/__init__.py", 'first']);
+        const process = spawn('python', ["../Odessa_Hack/__init__.py"]);
     } catch (e) {
-        console.log(e);
+        console.log('2222222', e);
     }
 
     return ctx.replyWithPhoto({ source: './result/mask.png' });
