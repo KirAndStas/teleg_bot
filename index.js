@@ -41,11 +41,10 @@ app.on('photo', downloadPhotoMiddleware, (ctx, next) => {
 
     try {
         var options = {
-            pythonPath: '/usr/bin/python3.5',
-            scriptPath: '../Odessa_Hack'
+            pythonPath: '/usr/bin/python3.5'
         };
 
-        PythonShell.run('__init__.py', function (err) {
+        PythonShell.run('../Odessa_Hack/__init__.py', function (err) {
             if (err) throw err;
             console.log('finished');
         });
