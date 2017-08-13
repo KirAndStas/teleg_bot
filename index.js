@@ -29,8 +29,8 @@ app.on('photo', downloadPhotoMiddleware, (ctx, next) => {
     })
 
     try {
-        // const process = spawn('python', ["../Odessa_Hack/__init__.py"]);
-        const process = spawn('python', ["./main.py"]);
+        const process = spawn('python', ["../Odessa_Hack/__init__.py"]);
+        // const process = spawn('python', ["./main.py"]);
     } catch (e) {
         console.log('2222222', e);
     }
