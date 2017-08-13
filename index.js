@@ -40,11 +40,11 @@ app.on('photo', downloadPhotoMiddleware, (ctx, next) => {
     downloadImages(ctx.state.fileLink);
 
     try {
-        var options = {
+        const options = {
             pythonPath: '/usr/bin/python3.5'
         };
 
-        PythonShell.run('../Odessa_Hack/__init__.py', function (err) {
+        PythonShell.run('../Odessa_Hack/__init__.py', options, function (err) {
             if (err) throw err;
             console.log('finished');
         });
