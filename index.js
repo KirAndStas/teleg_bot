@@ -1,9 +1,6 @@
 const Telegraf = require('telegraf');
 const PythonShell = require('python-shell');
-
-
 const fs = require('fs');
-// const spawn = require("child_process").spawn;
 
 const app = new Telegraf(process.env.BOT_TOKEN)
 
@@ -24,23 +21,16 @@ app.command('help', ({ from, reply }) => {
 })
 
 app.on('photo', downloadPhotoMiddleware, (ctx, next) => {
-    console.log('00000000');
     const format = ctx.state.fileLink.slice(-3);
-    console.log('000000000000000000000000000000000');
     fs.writeFile(`./original/test.${format}`, ctx.state.fileLink, (err) => {
         if (err) console.log('1111', err);
     })
 
     try {
-        // setTimeout()
         PythonShell.run('../Odessa_Hack/__init__.py', function (err) {
             if (err) throw err;
             console.log('finished');
         });
-        // setTimeout(spawn('python3', ["../Odessa_Hack/__init__.py"]), 1000)
-        // const process = spawn('python3', ["../Odessa_Hack/__init__.py"]);
-        // console.log('=========', process);
-        // const process = spawn('python', ["./main.py"]);
     } catch (e) {
         console.log('2222222', e);
     }
