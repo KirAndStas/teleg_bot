@@ -48,7 +48,7 @@ app.on('photo', downloadPhotoMiddleware, (ctx, next) => {
 
         console.log('qqqqqqqqq', result);
 
-        if (result) {
+        if (!result) {
             PythonShell.run('../Odessa_Hack/__init__.py', options, function (err) {
                 if (err) throw err;
                 console.log('finished');
