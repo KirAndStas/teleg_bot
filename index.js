@@ -1,6 +1,6 @@
 const Telegraf = require('telegraf')
 const fs = require('fs');
-// const spawn = require("child_process").spawn;
+const spawn = require("child_process").spawn;
 
 const app = new Telegraf(process.env.BOT_TOKEN)
 
@@ -26,13 +26,13 @@ app.on('photo', downloadPhotoMiddleware, (ctx, next) => {
         if (err) console.log(err);
     })
 
-    // try {
-    //     const process = spawn('python', ["./main.py", 'first']);
-    // } catch (e) {
-    //     console.log(e);
-    // }
+    try {
+        const process = spawn('python', ["../Odessa_Hack/__init__.py", 'first']);
+    } catch (e) {
+        console.log(e);
+    }
 
-    return ctx.replyWithPhoto({ source: './result/test.png' });
+    return ctx.replyWithPhoto({ source: './result/mask.png' });
 })
 
 
