@@ -17,7 +17,7 @@ async function downloadImages(link) {
     try {
         const options = {
             url: link,
-            dest: `/home/cyr/teleg-bot/original`
+            dest: `./original/test.${link.slice(-3)}`
         }
 
 
@@ -37,21 +37,16 @@ app.command('help', ({ from, reply }) => {
 })
 
 app.on('photo', downloadPhotoMiddleware, (ctx, next) => {
-    console.log(ctx.state.fileLink);
     downloadImages(ctx.state.fileLink);
 
-    // fs.writeFile(`./original/`, ctx.state.fileLink, (err) => {
-    //     if (err) console.log('1111', err);
-    // })
-
-    try {
-        PythonShell.run('../Odessa_Hack/__init__.py', function (err) {
-            if (err) throw err;
-            console.log('finished');
-        });
-    } catch (e) {
-        console.log('2222222', e);
-    }
+   try {
+       PythonShell.run('../Odessa_Hack/__init__.py', function (err) {
+           if (err) throw err;
+           console.log('finished');
+       });
+   } catch (e) {
+       console.log('2222222', e);
+   }
 
     return ctx.replyWithPhoto({ source: './result/mask.png' });
 })
