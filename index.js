@@ -1,4 +1,5 @@
 const Telegraf = require('telegraf');
+const download = require('image-downloader')
 const PythonShell = require('python-shell');
 const fs = require('fs');
 
@@ -12,6 +13,21 @@ const downloadPhotoMiddleware = (ctx, next) => {
     })
 }
 
+async function downloadImages(link) {
+    try {
+        const options = {
+            url: link,
+            dest: `/home/cyr/teleg-bot/original`
+        }
+
+
+        const { filename, image } = await download.image(options)
+        console.log(filename) // => /path/to/dest/image.jpg
+    } catch (e) {
+        throw e
+    }
+}
+
 app.command('start', ({ from, reply }) => {
   return reply('Welcome!')
 })
@@ -21,10 +37,12 @@ app.command('help', ({ from, reply }) => {
 })
 
 app.on('photo', downloadPhotoMiddleware, (ctx, next) => {
-    const format = ctx.state.fileLink.slice(-3);
-    fs.writeFile(`./original/test.${format}`, ctx.state.fileLink, (err) => {
-        if (err) console.log('1111', err);
-    })
+    console.log(ctx.state.fileLink);
+    downloadImages(ctx.state.fileLink);
+
+    // fs.writeFile(`./original/`, ctx.state.fileLink, (err) => {
+    //     if (err) console.log('1111', err);
+    // })
 
     try {
         PythonShell.run('../Odessa_Hack/__init__.py', function (err) {
