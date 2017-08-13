@@ -54,15 +54,15 @@ app.on('photo', downloadPhotoMiddleware, (ctx, next) => {
                 if (err) throw err;
                 console.log('finished');
             });
-        } else {
-            exec('rm' + '/home/mykhalychnickolay/teleg_bot/original/*', function (err, stdout, stderr) {
-                // your callback goes here
-            });
         }
+        exec('rm' + '/home/mykhalychnickolay/teleg_bot/original/*', function (err, stdout, stderr) {
+            console.log('Clear original');
+        });
 
     } catch (e) {
         console.log('2222222', e);
     }
+
 
     return ctx.replyWithPhoto({ source: './result/mask.png' });
 })
