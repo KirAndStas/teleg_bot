@@ -1,6 +1,6 @@
 {
     "scripts": {
-        "start": "micro-bot"
+        "start": "BOT_TOKEN='401736683:AAHzdsgAswVRNXNRREhGYy8_0uESYuMhFcc' micro-bot index.js"
     },
     "dependencies": {
         "micro-bot": "^1.3.2",
