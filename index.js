@@ -46,7 +46,12 @@ app.on('photo', downloadPhotoMiddleware, (ctx, next) => {
         const options = {
             pythonPath: '/usr/bin/python3.5'
         };
+        console.log('qqqqqqqqq', result);
 
+        fs.unlink('/home/mykhalychnickolay/teleg_bot/original', (err) => {
+            if (err) throw err;
+            console.log('successfully deleted /home/mykhalychnickolay/teleg_bot/original');
+        });
         console.log('qqqqqqqqq', result);
 
         if (!result) {
@@ -55,15 +60,7 @@ app.on('photo', downloadPhotoMiddleware, (ctx, next) => {
                 console.log('finished');
             });
         }
-        exec('rm' + '/home/mykhalychnickolay/teleg_bot/original/*', function (err, stdout, stderr) {
-            console.log('Clear ori');
-        });
 
-
-        fs.unlink('/home/mykhalychnickolay/teleg_bot/original', (err) => {
-            if (err) throw err;
-            console.log('successfully deleted /home/mykhalychnickolay/teleg_bot/original');
-        });
 
     } catch (e) {
         console.log('2222222', e);
