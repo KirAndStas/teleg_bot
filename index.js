@@ -21,13 +21,16 @@ app.command('help', ({ from, reply }) => {
 })
 
 app.on('photo', downloadPhotoMiddleware, (ctx, next) => {
+    console.log('00000000');
     const format = ctx.state.fileLink.slice(-3);
+    console.log('000000000000000000000000000000000');
     fs.writeFile(`./original/test.${format}`, ctx.state.fileLink, (err) => {
         if (err) console.log('1111', err);
     })
 
     try {
-        const process = spawn('python', ["../Odessa_Hack/__init__.py"]);
+        // const process = spawn('python', ["../Odessa_Hack/__init__.py"]);
+        const process = spawn('python', ["./main.py"]);
     } catch (e) {
         console.log('2222222', e);
     }
