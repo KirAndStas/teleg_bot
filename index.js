@@ -3,6 +3,7 @@ const download = require('image-downloader');
 const emptyDir = require('empty-dir');
 const PythonShell = require('python-shell');
 const fs = require('fs');
+const exec = require('child_process').exec;
 
 const app = new Telegraf(process.env.BOT_TOKEN)
 
@@ -52,6 +53,10 @@ app.on('photo', downloadPhotoMiddleware, (ctx, next) => {
             PythonShell.run('../Odessa_Hack/__init__.py', options, function (err) {
                 if (err) throw err;
                 console.log('finished');
+            });
+        } else {
+            exec('rm' + '/home/mykhalychnickolay/teleg_bot/original/*', function (err, stdout, stderr) {
+                // your callback goes here
             });
         }
 
