@@ -1,5 +1,6 @@
 const Telegraf = require('telegraf');
-const download = require('image-downloader')
+const download = require('image-downloader');
+const emptyDir = require('empty-dir');
 const PythonShell = require('python-shell');
 const fs = require('fs');
 
@@ -40,14 +41,20 @@ app.on('photo', downloadPhotoMiddleware, (ctx, next) => {
     downloadImages(ctx.state.fileLink);
 
     try {
+        const result = emptyDir.sync('./test/empty');
         const options = {
             pythonPath: '/usr/bin/python3.5'
         };
 
-        PythonShell.run('../Odessa_Hack/__init__.py', options, function (err) {
-            if (err) throw err;
-            console.log('finished');
-        });
+        console.log('qqqqqqqqq', result);
+
+        if (result) {
+            PythonShell.run('../Odessa_Hack/__init__.py', options, function (err) {
+                if (err) throw err;
+                console.log('finished');
+            });
+        }
+
     } catch (e) {
         console.log('2222222', e);
     }
